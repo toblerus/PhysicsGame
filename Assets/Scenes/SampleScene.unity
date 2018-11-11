@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f89c4b23cc6b94d8150c47048377c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelLength: 10
+  LevelLength: 20
   LevelParent: {fileID: 976070883}
   LevelPrefabs:
   - {fileID: 1375047510077776, guid: bd39d87e8e1b0fb4085a166c501b3d52, type: 2}
@@ -249,6 +249,9 @@ MonoBehaviour:
   - {fileID: 1650192016296034, guid: ffda2912e0fa04d4f8dba4916c7616b0, type: 2}
   - {fileID: 1682093803106074, guid: 19f98f57286f540469f80ebcdac1ec3f, type: 2}
   - {fileID: 1852249037023788, guid: 28c6e1039344d374c8119f6e14c5192b, type: 2}
+  InitialPos: {x: 1.5, y: -1.5, z: 0}
+  CurrentPos: {x: 0, y: 0, z: 0}
+  Offset: {x: 3, y: 0, z: 0}
 --- !u!4 &1815969898
 Transform:
   m_ObjectHideFlags: 0

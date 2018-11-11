@@ -7,6 +7,10 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject LevelParent;
     public GameObject[] LevelPrefabs;
 
+    public Vector3 InitialPos = new Vector3(1.5f, -1.5f, 0.0f);
+    public Vector3 CurrentPos;
+    public Vector3 Offset = new Vector3(3.0f, 0.0f, 0.0f);
+
 	// Use this for initialization
 	void Start ()
     {
@@ -16,11 +20,13 @@ public class LevelGenerator : MonoBehaviour {
 	
     public void GenerateLevel()
     {
+        CurrentPos = InitialPos;
         for (int i = 0; i <= LevelLength; i++)
         {
-            float LevelPrefabIndex = Random.Range(float 0,float 1)*10;
+            int LevelPrefabIndex = Random.Range( 0, LevelPrefabs.Length);
             Debug.Log(LevelPrefabIndex);
-            //test
+            Instantiate(LevelPrefabs[LevelPrefabIndex], CurrentPos, Quaternion.identity);
+            CurrentPos = CurrentPos + Offset;
         }
     }
 }
