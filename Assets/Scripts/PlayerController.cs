@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    
+
+    public PlayerSO playerData;
+
     public bool ButtonIsPressed;
     public float IncreaseSpeed;
 
@@ -23,7 +25,7 @@ public class PlayerController : MonoBehaviour {
     public void DisableForce()
     {
         GetComponent<ConstantForce2D>().enabled = false;
-        GetComponent<ConstantForce2D>().force = new Vector2(0, -5); //<- put into config (scriptable object)
+        GetComponent<ConstantForce2D>().force = new Vector2(playerData.ForceX, playerData.ForceY); //<- put into config (scriptable object)
     }
 
     public void Update()
@@ -49,6 +51,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void ButtonPress() { ButtonIsPressed = true; }
-    public void RuttonUp() { ButtonIsPressed = false; }
+    public void ButtonUp() { ButtonIsPressed = false; }
 
 }

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineMesh : MonoBehaviour {
+public class LineMesh : MonoBehaviour
+{
 
     public EdgeCollider2D edgeCollider;
     public float yDisplacement = 0.05f;
     public MeshFilter meshFilter;
 
-    // Use this for initialization
-    void Start() {
+    void Start()
+    {
         for (int i = 1; i < edgeCollider.points.Length; i++)
         {
-            var source2d = edgeCollider.points[i-1];
+            var source2d = edgeCollider.points[i - 1];
             var source = new Vector3(source2d.x, source2d.y, 0);
             var target2d = edgeCollider.points[i];
             var target = new Vector3(target2d.x, target2d.y, 0);
@@ -33,10 +34,5 @@ public class LineMesh : MonoBehaviour {
             mesh.triangles = triangles.ToArray();
             meshFilter.mesh = mesh;
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }

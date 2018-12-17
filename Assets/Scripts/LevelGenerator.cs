@@ -24,7 +24,7 @@ public class LevelGenerator : MonoBehaviour {
         for (int i = 0; i <= LevelLength; i++)
         {
             int LevelPrefabIndex = Random.Range( 0, LevelPrefabs.Length);
-            Debug.Log(LevelPrefabIndex);
+            //Debug.Log(LevelPrefabIndex);
             var InstantiatedObject = Instantiate(LevelPrefabs[LevelPrefabIndex], CurrentPos, Quaternion.identity);
             CurrentPos = CurrentPos + Offset;
             InstantiatedObject.transform.parent = LevelParent.transform;
