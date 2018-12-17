@@ -370,6 +370,8 @@ MonoBehaviour:
   ButtonIsPressed: 0
   IncreaseSpeed: 1
   Period: 0.5
+  maxDistance: 0
+  loseCondition: 2
 --- !u!96 &1094177560
 TrailRenderer:
   serializedVersion: 2

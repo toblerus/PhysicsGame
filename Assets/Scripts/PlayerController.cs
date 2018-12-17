@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
     public float Period = 0.5f;
     private ConstantForce2D _constantForce2D;
 
+    public int maxDistance;
+    public int loseCondition = 2;
+
     private void Start()
     {
         _constantForce2D = GetComponent<ConstantForce2D>();
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Update()
     {
+        Checklose();
         if (ButtonIsPressed == true)
         {
             Move();
@@ -52,5 +56,18 @@ public class PlayerController : MonoBehaviour {
 
     public void ButtonPress() { ButtonIsPressed = true; }
     public void ButtonUp() { ButtonIsPressed = false; }
+
+    public void Checklose()
+    {
+        if(transform.position.x > maxDistance)
+        {
+            maxDistance = (int)transform.position.x;
+        }
+        if (maxDistance - transform.position.x >= loseCondition)
+        {
+            Debug.Log("You Lost");
+        }
+
+    }
 
 }
