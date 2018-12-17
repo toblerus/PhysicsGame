@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
-    public bool buttonIsPressed;
+    public bool ButtonIsPressed;
     public float IncreaseSpeed;
 
-    private float nextActionTime = 0.0f;
-    public float period = 0.5f;
+    private float _nextActionTime = 0.0f;
+    public float Period = 0.5f;
+    private ConstantForce2D _constantForce2D;
+
+    private void Start()
+    {
+        _constantForce2D = GetComponent<ConstantForce2D>();
+    }
 
     public void Move()
     {
-        GetComponent<ConstantForce2D>().enabled = true;    }
+        _constantForce2D.enabled = true;    }
 
     public void DisableForce()
     {
         GetComponent<ConstantForce2D>().enabled = false;
-        GetComponent<ConstantForce2D>().force = new Vector2(0, -5);
+        GetComponent<ConstantForce2D>().force = new Vector2(0, -5); //<- put into config (scriptable object)
     }
 
     public void Update()
     {
-        if (buttonIsPressed == true)
+        if (ButtonIsPressed == true)
         {
             Move();
-            if (Time.time > nextActionTime)
+            if (Time.time > _nextActionTime)
             {
-                nextActionTime += period;
-                increaseGravity();
+                _nextActionTime += Period;
+                IncreaseGravity();
             }
         }
         else
@@ -37,12 +43,12 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void increaseGravity()
+    public void IncreaseGravity()
     {
         GetComponent<ConstantForce2D>().force = new Vector2(0, GetComponent<ConstantForce2D>().force.y - 1);
     }
 
-    public void buttonPress() { buttonIsPressed = true; }
-    public void buttonUp() { buttonIsPressed = false; }
+    public void ButtonPress() { ButtonIsPressed = true; }
+    public void RuttonUp() { ButtonIsPressed = false; }
 
 }
