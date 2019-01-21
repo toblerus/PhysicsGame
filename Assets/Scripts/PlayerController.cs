@@ -8,16 +8,18 @@ public class PlayerController : MonoBehaviour {
     public GameObject RestartButton;
     public PlayerConfig playerData;
 
+    public SavegameController SavegameController;
+
 
     private bool _buttonIsPressed;
     private float _increaseSpeed;
 
     private float _nextActionTime = 0.0f;
-    private float _period; //Same for this 
+    private float _period;  
     private ConstantForce2D _constantForce2D;
 
-    private float maxDistance;
-    private int loseCondition; //= playerData.loseCondition not possible because if instantiation
+    public float maxDistance;
+    private int loseCondition; 
 
     private void Start()
     {
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour {
         maxDistance = Mathf.Max(maxDistance, transform.position.x);
         if (maxDistance - transform.position.x >= loseCondition)
         {
-            SavePlayerProgress();
+            SavegameController.SavePlayerProgress((int)maxDistance);
             Debug.Log("You Lost");
             RestartButton.SetActive(true);
             Time.timeScale = 0.0f;
@@ -82,10 +84,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void SavePlayerProgress()
-    {
-        PlayerPrefs.SetInt("highestScore", (int)maxDistance);
-    }
+    
 }
 
 internal class SerializedFieldAttribute : Attribute
