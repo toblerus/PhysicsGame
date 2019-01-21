@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
+    public ChunkView ChunkView;
+
     public int LevelLength;
     public GameObject LevelParent;
-    public GameObject[] LevelPrefabs; //Array of JunkView (Ask which prefabs fit to previous ones and take one from those
+    private GameObject[] _compatiblePrefabs;
     public GameObject[] LevelStartPrefabs;
+    private string _lastSpawnedPrefab = "LevelGen1(Clone)";
 
     public Vector3 InitialPos = new Vector3(1.5f, -1.5f, 0.0f);
     public Vector3 CurrentPos;
@@ -29,9 +32,12 @@ public class LevelGenerator : MonoBehaviour {
 
         for (int i = 0; i <= LevelLength; i++)
         {
-            int LevelPrefabIndex = Random.Range( 0, LevelPrefabs.Length);
-            //Debug.Log(LevelPrefabIndex);
-            var InstantiatedObject = Instantiate(LevelPrefabs[LevelPrefabIndex], CurrentPos, Quaternion.identity);
+            _compatiblePrefabs = ChunkView.getCompatibles(_lastSpawnedPrefab);
+            Debug.Log(_compatiblePrefabs);
+            int LevelPrefabIndex = Random.Range( 0, _compatiblePrefabs.Length);
+            Debug.Log(LevelPrefabIndex);
+            var InstantiatedObject = Instantiate(_compatiblePrefabs[LevelPrefabIndex], CurrentPos, Quaternion.identity);
+            _lastSpawnedPrefab = InstantiatedObject.name;
             CurrentPos = CurrentPos + Offset;
             InstantiatedObject.transform.parent = LevelParent.transform;
         }
