@@ -1,46 +1,58 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public PlayerSO playerData;
+    public GameObject RestartButton;
+    public PlayerConfig playerData;
 
-    public bool ButtonIsPressed;
-    public float IncreaseSpeed;
+
+    private bool _buttonIsPressed;
+    private float _increaseSpeed;
 
     private float _nextActionTime = 0.0f;
-    public float Period = 0.5f;
+    private float _period; //Same for this 
     private ConstantForce2D _constantForce2D;
 
-    public int maxDistance;
-    public int loseCondition = 2;
+    private float maxDistance;
+    private int loseCondition; //= playerData.loseCondition not possible because if instantiation
 
     private void Start()
     {
+        _period = playerData.Period;
+        loseCondition = playerData.loseCondition;
         _constantForce2D = GetComponent<ConstantForce2D>();
     }
 
     public void Move()
     {
-        _constantForce2D.enabled = true;    }
+        _constantForce2D.enabled = true;
+    }
 
     public void DisableForce()
     {
-        GetComponent<ConstantForce2D>().enabled = false;
-        GetComponent<ConstantForce2D>().force = new Vector2(playerData.ForceX, playerData.ForceY); //<- put into config (scriptable object)
+        _constantForce2D.enabled = false;
+        _constantForce2D.force = new Vector2(playerData.ForceX, playerData.ForceY);
     }
 
     public void Update()
     {
-        Checklose();
-        if (ButtonIsPressed == true)
+        CheckLose();
+
+        if (Input.touchCount > 0)
         {
-            Move();
-            if (Time.time > _nextActionTime)
+            
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase != TouchPhase.Moved || touch.phase != TouchPhase.Stationary)
             {
-                _nextActionTime += Period;
-                IncreaseGravity();
+                Move();
+                if (Time.time > _nextActionTime)
+                {
+                    _nextActionTime += _period;
+                    IncreaseGravity();
+                }
             }
         }
         else
@@ -51,23 +63,31 @@ public class PlayerController : MonoBehaviour {
 
     public void IncreaseGravity()
     {
-        GetComponent<ConstantForce2D>().force = new Vector2(0, GetComponent<ConstantForce2D>().force.y - 1);
+        _constantForce2D.force -= Vector2.up * 1;
     }
 
-    public void ButtonPress() { ButtonIsPressed = true; }
-    public void ButtonUp() { ButtonIsPressed = false; }
+    public void ButtonPress() { _buttonIsPressed = true; }
+    public void ButtonUp() { _buttonIsPressed = false; }
 
-    public void Checklose()
+    public void CheckLose()
     {
-        if(transform.position.x > maxDistance)
-        {
-            maxDistance = (int)transform.position.x;
-        }
+        maxDistance = Mathf.Max(maxDistance, transform.position.x);
         if (maxDistance - transform.position.x >= loseCondition)
         {
+            SavePlayerProgress();
             Debug.Log("You Lost");
+            RestartButton.SetActive(true);
+            Time.timeScale = 0.0f;
+            this.enabled = false;
         }
-
     }
 
+    private void SavePlayerProgress()
+    {
+        PlayerPrefs.SetInt("highestScore", (int)maxDistance);
+    }
+}
+
+internal class SerializedFieldAttribute : Attribute
+{
 }

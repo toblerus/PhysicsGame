@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1650192016296034}
+  m_RootGameObject: {fileID: 1577944141214228}
   m_IsPrefabParent: 1
---- !u!1 &1650192016296034
+--- !u!1 &1577944141214228
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4131939751025108}
-  - component: {fileID: 68274259599241802}
-  - component: {fileID: 114469281000495896}
-  - component: {fileID: 120075114995826608}
+  - component: {fileID: 4509866215889608}
+  - component: {fileID: 68531547283263800}
+  - component: {fileID: 114037125974255874}
+  - component: {fileID: 120107326865132218}
   m_Layer: 0
-  m_Name: LevelGen3
+  m_Name: LevelGenStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4131939751025108
+--- !u!4 &4509866215889608
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650192016296034}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.5, y: -1.5, z: 0}
+  m_GameObject: {fileID: 1577944141214228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 18.7, y: 18.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!68 &68274259599241802
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &68531547283263800
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650192016296034}
+  m_GameObject: {fileID: 1577944141214228}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -57,54 +57,29 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.07999999, y: 0}
-  - {x: -0.06288671, y: -0.00083515345}
-  - {x: -0.056674138, y: -0.0036176}
-  - {x: -0.05260933, y: -0.009581462}
-  - {x: -0.050401006, y: -0.0147283}
-  - {x: -0.049440153, y: -0.02049632}
-  - {x: -0.047722355, y: -0.029748224}
-  - {x: -0.046414796, y: -0.040151343}
-  - {x: -0.044603508, y: -0.049063046}
-  - {x: -0.041613035, y: -0.058409933}
-  - {x: -0.03475176, y: -0.06473529}
-  - {x: -0.02563535, y: -0.067997575}
-  - {x: -0.013344567, y: -0.06584577}
-  - {x: -0.0041334066, y: -0.062073726}
-  - {x: 0.005388106, y: -0.054104082}
-  - {x: 0.013656385, y: -0.044538245}
-  - {x: 0.023789365, y: -0.03343434}
-  - {x: 0.029592881, y: -0.027001845}
-  - {x: 0.03716342, y: -0.020247135}
-  - {x: 0.043998934, y: -0.013850167}
-  - {x: 0.05151529, y: -0.009416928}
-  - {x: 0.05979823, y: -0.0061126947}
-  - {x: 0.06592528, y: -0.003132361}
-  - {x: 0.07210193, y: -0.0014330995}
+  - {x: -0.08172377, y: 0.02413322}
   - {x: 0.07999999, y: 0}
---- !u!114 &114469281000495896
+--- !u!114 &114037125974255874
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650192016296034}
+  m_GameObject: {fileID: 1577944141214228}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 107a3692d2139994fa330c3db5cb8eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeCollider: {fileID: 68504525330956716, guid: 19f98f57286f540469f80ebcdac1ec3f,
-    type: 2}
-  lineRenderer: {fileID: 120469194743795100, guid: 19f98f57286f540469f80ebcdac1ec3f,
-    type: 2}
+  edgeCollider: {fileID: 0}
+  lineRenderer: {fileID: 0}
   lineMaterial: {fileID: 2100000, guid: eaf088dc1d98a1c4bb97ce63d4ddf4cc, type: 2}
   lineWidth: 0.05
---- !u!120 &120075114995826608
+--- !u!120 &120107326865132218
 LineRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650192016296034}
+  m_GameObject: {fileID: 1577944141214228}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

@@ -76,8 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107a3692d2139994fa330c3db5cb8eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeCollider: {fileID: 0}
-  lineRenderer: {fileID: 0}
+  edgeCollider: {fileID: 68504525330956716, guid: 19f98f57286f540469f80ebcdac1ec3f,
+    type: 2}
+  lineRenderer: {fileID: 120469194743795100, guid: 19f98f57286f540469f80ebcdac1ec3f,
+    type: 2}
   lineMaterial: {fileID: 2100000, guid: eaf088dc1d98a1c4bb97ce63d4ddf4cc, type: 2}
   lineWidth: 0.05
 --- !u!120 &120267854235987490

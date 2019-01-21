@@ -5,7 +5,8 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour {
     public int LevelLength;
     public GameObject LevelParent;
-    public GameObject[] LevelPrefabs;
+    public GameObject[] LevelPrefabs; //Array of JunkView (Ask which prefabs fit to previous ones and take one from those
+    public GameObject[] LevelStartPrefabs;
 
     public Vector3 InitialPos = new Vector3(1.5f, -1.5f, 0.0f);
     public Vector3 CurrentPos;
@@ -21,6 +22,11 @@ public class LevelGenerator : MonoBehaviour {
     public void GenerateLevel()
     {
         CurrentPos = InitialPos;
+        int StartPrefabIndex = Random.Range(0, LevelStartPrefabs.Length);
+        var InstantiatedStart = Instantiate(LevelStartPrefabs[StartPrefabIndex], CurrentPos, Quaternion.identity);
+        CurrentPos = CurrentPos + Offset;
+        InstantiatedStart.transform.parent = LevelParent.transform;
+
         for (int i = 0; i <= LevelLength; i++)
         {
             int LevelPrefabIndex = Random.Range( 0, LevelPrefabs.Length);

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EdgeCollider2D))]
+[RequireComponent(typeof(LineRenderer))]
 public class DrawLineScript : MonoBehaviour {
 
     [SerializeField] private EdgeCollider2D edgeCollider;
