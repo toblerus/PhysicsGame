@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         _period = playerData.Period;
         loseCondition = playerData.loseCondition;
         _constantForce2D = GetComponent<ConstantForce2D>();
+        
     }
 
     public void Move()
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour {
     public void Update()
     {
         CheckLose();
-
+        StartCoroutine("CheckStuck");
         if (Input.touchCount > 0)
         {
             
@@ -75,6 +76,22 @@ public class PlayerController : MonoBehaviour {
     {
         maxDistance = Mathf.Max(maxDistance, transform.position.x);
         if (maxDistance - transform.position.x >= loseCondition)
+        {
+            SavegameController.SavePlayerProgress((int)maxDistance);
+            Debug.Log("You Lost");
+            RestartButton.SetActive(true);
+            Time.timeScale = 0.0f;
+            this.enabled = false;
+        }
+
+
+    }
+
+    public IEnumerator CheckStuck()
+    {
+        int ScoreLastTimeChecked = (int)maxDistance;
+        yield return new WaitForSeconds(3);
+        if(ScoreLastTimeChecked == maxDistance)
         {
             SavegameController.SavePlayerProgress((int)maxDistance);
             Debug.Log("You Lost");
